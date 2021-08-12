@@ -18,7 +18,8 @@ class PostsController extends Controller
 
     public function index()
     {
-        return view('posts.index');
+        $posts=Post::orderBy('created_at','desc')->paginate(5);
+        return view('posts.index')->with('posts',$posts);
     }
 
     /**
@@ -53,7 +54,7 @@ class PostsController extends Controller
         $post->cover_image='demo';
         $post->save();
 
-        return redirect('/dashboard')->with('success','Blog created successfully!');
+        return redirect('/posts')->with('success','Blog created successfully!');
     }
 
     /**

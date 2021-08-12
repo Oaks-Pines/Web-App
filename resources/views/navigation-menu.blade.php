@@ -100,8 +100,8 @@
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
 
-                            <x-jet-dropdown-link href="{{ route('posts.create') }}">
-                                {{ __('Create Post') }}
+                            <x-jet-dropdown-link href="{{ route('posts.index') }}">
+                                {{ __('Blog') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
