@@ -1,5 +1,6 @@
 <x-app-layout>
 <p>{{$post->title}}</p>
+<img style="width:100%" src="/CoverImages/{{$post->cover_image}}" class="img-rounded">
 <p>{{$post->body}}</p>
 
 @if (!Auth::guest())

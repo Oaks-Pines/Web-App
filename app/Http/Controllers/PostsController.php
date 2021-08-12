@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\File; 
+
 
 
 class PostsController extends Controller
@@ -43,15 +45,19 @@ class PostsController extends Controller
         $this->validate($request,[
             'title'=>'required',
             'body'=>'required',
-            'cover_image'=>'image|nullable|max:1999'
+            'cover_image'=>'image|nullable|max:2048'
         ]);
+
+        //Handle Cover Image Upload
+        $fileName = time().'.'.$request->cover_image->extension();  
+        $request->cover_image->move(public_path('CoverImages'), $fileName);
 
         //create new blog
         $post= new Post;
         $post->title= $request->input('title');
         $post->body= $request->input('body');
         $post->user_id=auth()->user()->id;
-        $post->cover_image='demo';
+        $post->cover_image=$fileName;
         $post->save();
 
         return redirect('/posts')->with('success','Blog created successfully!');
@@ -65,7 +71,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post=Post::find($id);
+        $post=Post::findOrFail($id);
         return view('posts.show')->with('post',$post);
     }
 
@@ -77,7 +83,7 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $post=Post::find($id);
+        $post=Post::findOrFail($id);
         // check for correct user
         if(auth()->user()->id == $post->user_id){
         return view('posts.edit')->with('post',$post);
@@ -99,11 +105,17 @@ class PostsController extends Controller
             'body'=>'required'
         ]);
 
+        //Handle Cover Image Upload
+        $fileName = time().'.'.$request->cover_image->extension();  
+        $request->cover_image->move(public_path('CoverImages'), $fileName);
+
         //update post
-        $post= Post::find($id);
+        $post= Post::findOrFail($id);
         $post->title= $request->input('title');
         $post->body= $request->input('body');
-        $post->cover_image='coverImage';
+        if($request->hasFile('cover_image')){
+            $post->cover_image=$fileName;
+        }
         $post->save();
 
         return redirect('/posts')->with('success','Blog editted successfully!');
@@ -117,9 +129,12 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post=Post::find($id);
+        $post=Post::findOrFail($id);
         // check for correct user
         if(auth()->user()->id == $post->user_id){
+         // Delete image from directory folder
+         unlink("CoverImages/".$post->cover_image);  
+
         $post->delete();
         return redirect('/posts')->with('success','Post deleted successfully!');
         }
