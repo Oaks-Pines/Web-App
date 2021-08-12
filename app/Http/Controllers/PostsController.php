@@ -117,6 +117,13 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post=Post::find($id);
+        // check for correct user
+        if(auth()->user()->id == $post->user_id){
+        $post->delete();
+        return redirect('/posts')->with('success','Post deleted successfully!');
+        }
+
+        return redirect('/posts')->with('error','Unauthorised page');
     }
 }
