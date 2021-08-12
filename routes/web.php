@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('posts','PostsController');
+Route::resource('posts',PostsController::class);
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

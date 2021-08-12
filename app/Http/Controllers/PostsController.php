@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+
 
 class PostsController extends Controller
 {
@@ -12,14 +14,11 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth',['except'=>['index','show']]);
-    }
     
+
     public function index()
     {
-        //
+        return view('posts.index');
     }
 
     /**
@@ -29,7 +28,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -40,7 +39,21 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+            'body'=>'required',
+            'cover_image'=>'image|nullable|max:1999'
+        ]);
+
+        //create new blog
+        $post= new Post;
+        $post->title= $request->input('title');
+        $post->body= $request->input('body');
+        $post->user_id=auth()->user()->id;
+        $post->cover_image='demo';
+        $post->save();
+
+        return redirect('/dashboard')->with('success','Blog created successfully!');
     }
 
     /**
