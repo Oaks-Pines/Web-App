@@ -77,7 +77,12 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post=Post::find($id);
+        // check for correct user
+        if(auth()->user()->id == $post->user_id){
+        return view('posts.edit')->with('post',$post);
+        }
+        return redirect('/posts')->with('error','Unauthorised page');
     }
 
     /**
@@ -89,7 +94,19 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'title'=>'required',
+            'body'=>'required'
+        ]);
+
+        //update post
+        $post= Post::find($id);
+        $post->title= $request->input('title');
+        $post->body= $request->input('body');
+        $post->cover_image='coverImage';
+        $post->save();
+
+        return redirect('/posts')->with('success','Blog editted successfully!');
     }
 
     /**
