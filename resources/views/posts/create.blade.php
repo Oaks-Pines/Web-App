@@ -3,6 +3,7 @@
 
     <h3><b>Create Blog</b></h3>
  {!! Form::open(['route'=>'posts.store','method'=>'POST','enctype'=>'multipart/form-data']) !!}
+ @csrf
     <div class="form-group">
         {{Form::label('title','Title:')}}
         {{Form::text('title','',['class'=>'form-control','placeholder'=>'Enter Title'])}}
