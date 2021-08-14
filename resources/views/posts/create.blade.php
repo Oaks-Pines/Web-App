@@ -1,8 +1,8 @@
 <x-app-layout>
     
 
-    <h3><b class="text-lg font-bold text-gray-600">Create Blog</b></h3>
- {!! Form::open(['route'=>'posts.store','method'=>'POST','enctype'=>'multipart/form-data','class'=>'w-full max-w-sm']) !!}
+    <h3><p class="text-center"><b>Create Blog</b></p></h3>
+ {!! Form::open(['route'=>'posts.store','method'=>'POST','enctype'=>'multipart/form-data','class'=>'w-full ']) !!}
  @csrf
  <div class="md:flex md:items-center mb-6">
     <div class="md:w-1/3">
