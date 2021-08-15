@@ -11,8 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        @livewireStyles
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
@@ -23,24 +22,20 @@
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
 
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+                {{-- CK Editor --}}
                 <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
                 <script type="text/javascript">
                     $(document).ready(function () {
                         $('.ckeditor').ckeditor();
                     });
                 </script>
+                {{-- Alpine.js --}}
+                <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
             </main>
         </div>
 
