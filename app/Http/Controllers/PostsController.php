@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\File; 
-
+use DB;
 
 
 class PostsController extends Controller
@@ -17,7 +17,7 @@ class PostsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except(['index','show']);
+        $this->middleware('auth')->except(['index','show','search']);
     }
 
     /**
@@ -147,5 +147,18 @@ class PostsController extends Controller
         }
 
         return redirect('/posts')->with('error','Unauthorised page');
+    }
+
+    /**
+     * Search for specified posts in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $search=$request->get('search');
+        $posts=DB::table('posts')->where('title','like','%'.$search.'%')->paginate(5);
+        return view('posts.index')->with('posts',$posts);
     }
 }

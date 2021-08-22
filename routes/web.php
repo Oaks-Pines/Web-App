@@ -21,6 +21,9 @@ Route::get('/', function () {
 
 Route::resource('posts',PostsController::class);
 
+Route::get('/search',[PostsController::class,'search'])->name('posts.search');;
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
