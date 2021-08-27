@@ -53,7 +53,7 @@
             <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
           </div>
           <div class="flex items-center">
-            <img class="w-10 h-10 rounded-full mr-4" src="/img/jonathan.jpg" alt="{{$post->user->name}}">
+            <img class="w-10 h-10 rounded-full mr-4" src="https://avatars.githubusercontent.com/u/71964085?v=4" alt="{{$post->user->name}}">
             <div class="text-sm">
               <p class="text-gray-900 leading-none">{{$post->user->name}}</p>
               <p class="text-gray-600">{{$post->created_at->format('d-m-Y')}}</p>
