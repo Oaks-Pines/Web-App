@@ -19,7 +19,7 @@ class Post extends Model
      * @var string
      */
     protected $table='posts';
-    protected $fillable = ['id','title','body','user_id'];
+    protected $fillable = ['id','title','body','author_id'];
 
     public function user(): BelongsTo
     {
