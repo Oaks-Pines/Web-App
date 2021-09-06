@@ -20,5 +20,11 @@
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+
+        <footer>
+            <div>
+                <h2>Copyright &copy;</h2>
+            </div>
+        </footer>
     </body>
 </html>
