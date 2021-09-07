@@ -5,6 +5,9 @@
 
     </head>
     <body>
+        <x-partials.nav/>
+        <x-ui.alerts/>
+
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
