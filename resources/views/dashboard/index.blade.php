@@ -1,5 +1,5 @@
 <x-app-layout>
     
 
-    <p>Welcome</p>
+    <p>New Dashboard</p>
 </x-app-layout>

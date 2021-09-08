@@ -28,15 +28,13 @@ Route::get('/search',[PostsController::class,'search'])->name('posts.search');
 
 Route::group(['middleware'=>['auth'], 'prefix'=>'dashboard'], function (){
     //Dashboard
-    Route::group(['prefix'=>'','as'=>'dashboard.'], function(){
-        Route::get('/', [DashboardController::class, 'index'])->name('index');
-    });
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     //Categories
     Route::resource('category',CategoryController::class);
 });
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
