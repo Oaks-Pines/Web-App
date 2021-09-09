@@ -28,7 +28,7 @@ Route::get('/search',[PostsController::class,'search'])->name('posts.search');
 
 Route::group(['middleware'=>['auth'], 'prefix'=>'dashboard'], function (){
     //Dashboard
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     //Categories
     Route::resource('category',CategoryController::class);
 });

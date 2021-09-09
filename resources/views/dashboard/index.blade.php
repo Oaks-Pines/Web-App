@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>K-WD Dashboard | Mini Column Sidebar</title>
+    <title>Oaks & Pines LTD</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
       rel="stylesheet"
@@ -59,10 +59,10 @@
             <!-- Brand -->
             <div class="flex-shrink-0">
               <a
-                href="../index.html"
+                href="/"
                 class="inline-block text-xl font-bold tracking-wider uppercase text-primary-dark dark:text-light"
               >
-                K-WD
+                {{Auth::user()->name}}
               </a>
             </div>
             <div class="flex flex-col items-center justify-center flex-1 space-y-4">
@@ -70,7 +70,7 @@
               <!-- Active classes "bg-primary text-white" -->
               <!-- inActive classes "bg-primary-50 text-primary-lighter" -->
               <a
-                href="#"
+                href="/"
                 class="p-2 text-white transition-colors duration-200 rounded-full bg-primary hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker"
               >
                 <span class="sr-only">Home</span>
@@ -225,7 +225,7 @@
                     </svg>
                   </span>
                 </button>
-                <h1 class="text-2xl font-medium">Home</h1>
+                <h1 class="text-2xl font-medium">Oaks & Pines LTD</h1>
               </div>
               <div class="space-x-2">
                 <!-- Toggle dark theme button -->
