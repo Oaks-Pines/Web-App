@@ -17,9 +17,14 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <x-partials.sidebarnav/>
-        <x-ui.alerts/>
-        
+
+        <div class="flex mb-4">
+            <div class="w-1/2 bg-gray-400 h-12">
+                <x-partials.sidebarnav/>
+            </div>
+            <div class="w-1/2 bg-gray-500 h-12">
+                <x-ui.alerts/>
+
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
@@ -44,5 +49,11 @@
         @stack('modals')
 
         @livewireScripts
+
+
+            </div>
+          </div>
+        
+        
     </body>
 </html>
