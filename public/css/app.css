@@ -2031,6 +2031,22 @@ select {
     background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
 }
 
+.bg-primary-darker {
+    background-color: var(--color-primary-darker);
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.bg-primary-50 {
+    background-color: var(--color-primary-50);
+}
+
+.bg-primary-100 {
+    background-color: var(--color-primary-100);
+}
+
 .bg-transparent {
     background-color: transparent;
 }
@@ -2393,9 +2409,25 @@ select {
     color: rgba(209, 213, 219, var(--tw-text-opacity));
 }
 
+.text-primary-dark {
+    color: var(--color-primary-dark);
+}
+
+.text-primary-lighter {
+    color: var(--color-primary-lighter);
+}
+
+.text-primary-100 {
+    color: var(--color-primary-100);
+}
+
 .text-blue-500 {
     --tw-text-opacity: 1;
     color: rgba(59, 130, 246, var(--tw-text-opacity));
+}
+
+.text-dark {
+    color: var(--dark);
 }
 
 .text-gray-800 {
@@ -2619,6 +2651,10 @@ select {
     background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
 
+.hover\:bg-primary-100:hover {
+    background-color: var(--color-primary-100);
+}
+
 .hover\:bg-gray-200:hover {
     --tw-bg-opacity: 1;
     background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
@@ -2657,6 +2693,10 @@ select {
 .hover\:text-gray-800:hover {
     --tw-text-opacity: 1;
     color: rgba(31, 41, 55, var(--tw-text-opacity));
+}
+
+.hover\:text-primary:hover {
+    color: var(--color-primary);
 }
 
 .hover\:text-gray-900:hover {
@@ -2737,6 +2777,10 @@ select {
     background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
 
+.focus\:bg-primary-100:focus {
+    background-color: var(--color-primary-100);
+}
+
 .focus\:bg-gray-200:focus {
     --tw-bg-opacity: 1;
     background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
@@ -2803,6 +2847,14 @@ select {
     --tw-ring-color: rgba(191, 219, 254, var(--tw-ring-opacity));
 }
 
+.focus\:ring-primary-darker:focus {
+    --tw-ring-color: var(--color-primary-darker);
+}
+
+.focus\:ring-primary-lighter:focus {
+    --tw-ring-color: var(--color-primary-lighter);
+}
+
 .focus\:ring-opacity-50:focus {
     --tw-ring-opacity: 0.5;
 }
@@ -2853,6 +2905,103 @@ select {
 .group:hover .group-hover\:text-gray-900 {
     --tw-text-opacity: 1;
     color: rgba(17, 24, 39, var(--tw-text-opacity));
+}
+
+.dark .dark\:border-primary-darker {
+    border-color: var(--color-primary-darker);
+}
+
+.dark .dark\:border-primary-dark {
+    border-color: var(--color-primary-dark);
+}
+
+.dark .dark\:border-primary {
+    border-color: var(--color-primary);
+}
+
+.dark .dark\:border-primary-light {
+    border-color: var(--color-primary-light);
+}
+
+.dark .dark\:border-transparent {
+    border-color: transparent;
+}
+
+.dark .dark\:bg-gray-900 {
+    --tw-bg-opacity: 1;
+    background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
+}
+
+.dark .dark\:bg-dark {
+    background-color: var(--dark);
+}
+
+.dark .dark\:bg-darker {
+    background-color: var(--darker);
+}
+
+.dark .dark\:bg-primary-lighter {
+    background-color: var(--color-primary-lighter);
+}
+
+.dark .dark\:text-light {
+    color: var(--light);
+}
+
+.dark .dark\:text-primary-dark {
+    color: var(--color-primary-dark);
+}
+
+.dark .dark\:text-primary-light {
+    color: var(--color-primary-light);
+}
+
+.dark .dark\:text-primary {
+    color: var(--color-primary);
+}
+
+.dark .dark\:text-primary-100 {
+    color: var(--color-primary-100);
+}
+
+.dark .dark\:opacity-70 {
+    opacity: 0.7;
+}
+
+.dark .dark\:focus-within\:text-light:focus-within {
+    color: var(--light);
+}
+
+.dark .dark\:hover\:border-primary-light:hover {
+    border-color: var(--color-primary-light);
+}
+
+.dark .dark\:hover\:bg-primary-dark:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.dark .dark\:hover\:text-light:hover {
+    color: var(--light);
+}
+
+.dark .dark\:hover\:text-primary-100:hover {
+    color: var(--color-primary-100);
+}
+
+.dark .dark\:focus\:bg-primary-dark:focus {
+    background-color: var(--color-primary-dark);
+}
+
+.dark .dark\:focus\:ring-primary-dark:focus {
+    --tw-ring-color: var(--color-primary-dark);
+}
+
+.dark .dark\:focus\:ring-offset-dark:focus {
+    --tw-ring-offset-color: var(--dark);
+}
+
+.dark .group:hover .dark\:group-hover\:text-primary-lighter {
+    color: var(--color-primary-lighter);
 }
 
 @media (min-width: 640px) {

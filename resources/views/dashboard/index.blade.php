@@ -59,7 +59,7 @@
             <!-- Brand -->
             <div class="flex-shrink-0">
               <a
-                href="/"
+                href="/dashboard"
                 class="inline-block text-xl font-bold tracking-wider uppercase text-primary-dark dark:text-light"
               >
                 {{Auth::user()->name}}
@@ -70,7 +70,7 @@
               <!-- Active classes "bg-primary text-white" -->
               <!-- inActive classes "bg-primary-50 text-primary-lighter" -->
               <a
-                href="/"
+                href="/dashboard"
                 class="p-2 text-white transition-colors duration-200 rounded-full bg-primary hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker"
               >
                 <span class="sr-only">Home</span>
@@ -225,7 +225,7 @@
                     </svg>
                   </span>
                 </button>
-                <h1 class="text-2xl font-medium">Oaks & Pines LTD</h1>
+                <h1 class="text-2xl font-medium">Oaks</h1>
               </div>
               <div class="space-x-2">
                 <!-- Toggle dark theme button -->
