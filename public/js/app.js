@@ -4966,11 +4966,120 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+var _this = undefined;
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__.default;
 alpinejs__WEBPACK_IMPORTED_MODULE_0__.default.start();
+
+var setup = function setup() {
+  var getTheme = function getTheme() {
+    if (window.localStorage.getItem('dark')) {
+      return JSON.parse(window.localStorage.getItem('dark'));
+    }
+
+    return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  };
+
+  var setTheme = function setTheme(value) {
+    window.localStorage.setItem('dark', value);
+  };
+
+  var getColor = function getColor() {
+    if (window.localStorage.getItem('color')) {
+      return window.localStorage.getItem('color');
+    }
+
+    return 'cyan';
+  };
+
+  var setColors = function setColors(color) {
+    var root = document.documentElement;
+    root.style.setProperty('--color-primary', "var(--color-".concat(color, ")"));
+    root.style.setProperty('--color-primary-50', "var(--color-".concat(color, "-50)"));
+    root.style.setProperty('--color-primary-100', "var(--color-".concat(color, "-100)"));
+    root.style.setProperty('--color-primary-light', "var(--color-".concat(color, "-light)"));
+    root.style.setProperty('--color-primary-lighter', "var(--color-".concat(color, "-lighter)"));
+    root.style.setProperty('--color-primary-dark', "var(--color-".concat(color, "-dark)"));
+    root.style.setProperty('--color-primary-darker', "var(--color-".concat(color, "-darker)"));
+    _this.selectedColor = color;
+    window.localStorage.setItem('color', color);
+  };
+
+  return {
+    loading: true,
+    isDark: getTheme(),
+    color: getColor(),
+    selectedColor: 'cyan',
+    toggleTheme: function toggleTheme() {
+      this.isDark = !this.isDark;
+      setTheme(this.isDark);
+    },
+    setLightTheme: function setLightTheme() {
+      this.isDark = false;
+      setTheme(this.isDark);
+    },
+    setDarkTheme: function setDarkTheme() {
+      this.isDark = true;
+      setTheme(this.isDark);
+    },
+    setColors: setColors,
+    watchScreen: function watchScreen() {
+      if (window.innerWidth <= 768) {
+        this.isSidebarOpen = false;
+        this.isUserPanelOpen = false;
+      } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+        this.isSidebarOpen = true;
+        this.isUserPanelOpen = false;
+      } else if (window.innerWidth >= 1280) {
+        this.isSidebarOpen = true;
+        this.isUserPanelOpen = true;
+      }
+    },
+    isSidebarOpen: window.innerWidth >= 768 ? true : false,
+    toggleSidbarMenu: function toggleSidbarMenu() {
+      this.isSidebarOpen = !this.isSidebarOpen;
+    },
+    isUserPanelOpen: window.innerWidth >= 1280 ? true : false,
+    openUserPanel: function openUserPanel() {
+      var _this2 = this;
+
+      this.isUserPanelOpen = true;
+      this.$nextTick(function () {
+        _this2.$refs.userPanel.focus();
+      });
+    },
+    isSettingsPanelOpen: false,
+    openSettingsPanel: function openSettingsPanel() {
+      var _this3 = this;
+
+      this.isSettingsPanelOpen = true;
+      this.$nextTick(function () {
+        _this3.$refs.settingsPanel.focus();
+      });
+    },
+    isNotificationsPanelOpen: false,
+    openNotificationsPanel: function openNotificationsPanel() {
+      var _this4 = this;
+
+      this.isNotificationsPanelOpen = true;
+      this.$nextTick(function () {
+        _this4.$refs.notificationsPanel.focus();
+      });
+    },
+    isSearchPanelOpen: false,
+    openSearchPanel: function openSearchPanel() {
+      var _this5 = this;
+
+      this.isSearchPanelOpen = true;
+      this.$nextTick(function () {
+        _this5.$refs.searchInput.focus();
+      });
+    }
+  };
+};
 
 /***/ }),
 

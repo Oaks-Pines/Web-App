@@ -1,59 +1,136 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>Oaks & Pines Landscaping LTD</title>
-
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Styles -->
-        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
+        <x-partials.head/>
     </head>
-    <body class="font-sans antialiased">
+    <body>
+    <div
+      x-data="setup()"
+      x-init="$refs.loading.classList.add('hidden'); setColors(color);"
+      :class="{ 'dark': isDark}"
+      @resize.window="watchScreen()"
+    >
+    <div class="flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
 
-        <div class="flex mb-4">
-            <div class="w-1/2 bg-gray-400 h-12">
-                <x-partials.sidebarnav/>
-            </div>
-            <div class="w-1/2 bg-gray-500 h-12">
-                <x-ui.alerts/>
-
-        <x-jet-banner />
-
-        <div class="min-h-screen bg-gray-100">
-
-
-            <!-- Page Content -->
-            <main>
+        <x-partials.sidebarnav/>
+        
+        <div class="flex flex-1 h-screen overflow-y-scroll">
                 {{ $slot }}
-                {{-- CK Editor --}}
-                <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('.ckeditor').ckeditor();
-                    });
-                </script>
-                {{-- Alpine.js --}}
-                <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-
-            </main>
+        <!-- User panel -->
+        <x-partials.userpanel/>
         </div>
+        <!-- Settings Panel -->
+        <x-partials.settingspanel/>
 
+        <script>
+            const setup = () => {
+              const getTheme = () => {
+                if (window.localStorage.getItem('dark')) {
+                  return JSON.parse(window.localStorage.getItem('dark'))
+                }
+                return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+              }
+      
+              const setTheme = (value) => {
+                window.localStorage.setItem('dark', value)
+              }
+      
+              const getColor = () => {
+                if (window.localStorage.getItem('color')) {
+                  return window.localStorage.getItem('color')
+                }
+                return 'cyan'
+              }
+      
+              const setColors = (color) => {
+                const root = document.documentElement
+                root.style.setProperty('--color-primary', `var(--color-${color})`)
+                root.style.setProperty('--color-primary-50', `var(--color-${color}-50)`)
+                root.style.setProperty('--color-primary-100', `var(--color-${color}-100)`)
+                root.style.setProperty('--color-primary-light', `var(--color-${color}-light)`)
+                root.style.setProperty('--color-primary-lighter', `var(--color-${color}-lighter)`)
+                root.style.setProperty('--color-primary-dark', `var(--color-${color}-dark)`)
+                root.style.setProperty('--color-primary-darker', `var(--color-${color}-darker)`)
+                this.selectedColor = color
+                window.localStorage.setItem('color', color)
+              }
+      
+              return {
+                loading: true,
+                isDark: getTheme(),
+                color: getColor(),
+                selectedColor: 'cyan',
+                toggleTheme() {
+                  this.isDark = !this.isDark
+                  setTheme(this.isDark)
+                },
+                setLightTheme() {
+                  this.isDark = false
+                  setTheme(this.isDark)
+                },
+                setDarkTheme() {
+                  this.isDark = true
+                  setTheme(this.isDark)
+                },
+                setColors,
+                watchScreen() {
+                  if (window.innerWidth <= 768) {
+                    this.isSidebarOpen = false
+                    this.isUserPanelOpen = false
+                  } else if (window.innerWidth >= 768 && window.innerWidth < 1280) {
+                    this.isSidebarOpen = true
+                    this.isUserPanelOpen = false
+                  } else if (window.innerWidth >= 1280) {
+                    this.isSidebarOpen = true
+                    this.isUserPanelOpen = true
+                  }
+                },
+                isSidebarOpen: window.innerWidth >= 768 ? true : false,
+                toggleSidbarMenu() {
+                  this.isSidebarOpen = !this.isSidebarOpen
+                },
+                isUserPanelOpen: window.innerWidth >= 1280 ? true : false,
+                openUserPanel() {
+                  this.isUserPanelOpen = true
+                  this.$nextTick(() => {
+                    this.$refs.userPanel.focus()
+                  })
+                },
+                isSettingsPanelOpen: false,
+                openSettingsPanel() {
+                  this.isSettingsPanelOpen = true
+                  this.$nextTick(() => {
+                    this.$refs.settingsPanel.focus()
+                  })
+                },
+                isNotificationsPanelOpen: false,
+                openNotificationsPanel() {
+                  this.isNotificationsPanelOpen = true
+                  this.$nextTick(() => {
+                    this.$refs.notificationsPanel.focus()
+                  })
+                },
+                isSearchPanelOpen: false,
+                openSearchPanel() {
+                  this.isSearchPanelOpen = true
+                  this.$nextTick(() => {
+                    this.$refs.searchInput.focus()
+                  })
+                },
+              }
+            }
+          </script>
+                
+                
+            
         @stack('modals')
-
         @livewireScripts
 
 
-            </div>
-          </div>
-        
-        
+    </div>
+           
+
+       
+    
     </body>
 </html>
