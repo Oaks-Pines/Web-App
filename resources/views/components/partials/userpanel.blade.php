@@ -119,7 +119,7 @@
                 <div class="text-sm">
                   Made by
                   <a href="https://github.com/Kamona-WD" target="_blank" class="text-blue-500 hover:underline">
-                    Ahmed Kamel
+                   Kenneth Mathari
                   </a>
                 </div>
               </footer>
