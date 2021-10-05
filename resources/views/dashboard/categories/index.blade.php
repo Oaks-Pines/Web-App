@@ -1,10 +1,15 @@
 <x-app-layout>
     
      
-   <p>Categories</p>
+   
    <section class="container mx-auto p-6 font-mono">
     <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
       <div class="w-full overflow-x-auto">
+        <div class="flex space-x-4">
+            <p>Categories</p>
+            <a href="category/create">Create</a>
+           </div>
+
         <table class="w-full">
           <thead>
             <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
