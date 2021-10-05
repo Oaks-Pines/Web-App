@@ -35,7 +35,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>['required','max:200'],
+            'parent_id'=>['spmetimes','nullable','numeric']
+        ]);
     }
 
     /**
