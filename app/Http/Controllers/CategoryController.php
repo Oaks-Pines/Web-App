@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
 
@@ -36,6 +37,13 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        $category = new Category;
+        $category->name= $request->name;
+        $category->parent_id=1;
+        $category->slug=Str::slug($request->name);
+        $category->save();
+
+        return redirect()->route('category.index')->with('success','Category created successfully!');
     }
 
     /**
