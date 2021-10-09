@@ -67,7 +67,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('dashboard.categories.edit');
+        return view('dashboard.categories.edit',compact('category'));
     }
 
     /**
@@ -79,7 +79,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request,[
+            'name'=>['required','unique:categories'],
+            'parent_id'=>['sometimes','nullable']
+        ]);
+
+        $category->name=$request->name;
+        $category->slug=Str::slug($request->name);
+        $category->save();
+
+        return redirect()->route('category.index')->with('success','Category updated successfully!');
     }
 
     /**
