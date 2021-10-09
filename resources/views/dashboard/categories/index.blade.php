@@ -22,21 +22,31 @@
             </tr>
           </thead>
           <tbody class="bg-white">
+            @foreach ($categories as $category)
+                
+            
             <tr class="text-gray-700">
               <td class="px-4 py-3 border">1</td>
-              <td class="px-4 py-3 text-ms font-semibold border">22</td>
-              <td class="px-4 py-3 text-xs border">were</td>
-              <td class="px-4 py-3 text-sm border">6/4/2000</td>
-              <td class="px-4 py-3 text-sm border">6/4/2000</td>
+              <td class="px-4 py-3 text-ms font-semibold border">{{$category->name}}</td>
+              <td class="px-4 py-3 text-xs border">
+                <ul class="flex">[
+                  @foreach ($category->subCategories as $subCategory)
+                      <li class="px-2">{{$subCategory->name}},</li>
+                  @endforeach
+                ]
+                </ul>
+              </td>
+              <td class="px-4 py-3 text-sm border">{{$category->created_at->format('d/m/Y')}}</td>
+              <td class="px-4 py-3 text-sm border">{{$category->updated_at->format('d/m/y')}}</td>
               <td class="px-4 py-3 text-sm border">
                   <div class="flex justify-start space-x-1">
-                      <a href="#" class="p-1">
+                      <a href="{{route('category.edit', $category)}}" class="p-1">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                           </svg>
                       </a>
 
-                      <form method="POST" action="#">
+                      <form method="POST" action="{{route('category.destroy', $category)}}">
                           @csrf
                           @method('Delete')
                           <button type="submit" class="p-1">
@@ -48,7 +58,8 @@
                   </div>
               </td>
             </tr>
-            
+            @endforeach
+
           </tbody>
         </table>
         

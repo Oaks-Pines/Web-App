@@ -16,7 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('dashboard.categories.index');
+        $categories= Category::with('subCategories')->whereNull('parent_id')->get();
+        return view('dashboard.categories.index', compact('categories'));
     }
 
     /**
@@ -39,7 +40,7 @@ class CategoryController extends Controller
     {
         $category = new Category;
         $category->name= $request->name;
-        $category->parent_id=1;
+        $category->parent_id=null;
         $category->slug=Str::slug($request->name);
         $category->save();
 
