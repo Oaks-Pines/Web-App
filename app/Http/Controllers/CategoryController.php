@@ -27,7 +27,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.categories.create');
+        $categories= Category::with('subCategories')->whereNull('parent_id')->get();
+        return view('dashboard.categories.create', compact('categories'));
     }
 
     /**
@@ -40,7 +41,7 @@ class CategoryController extends Controller
     {
         $category = new Category;
         $category->name= $request->name;
-        $category->parent_id=null;
+        $category->parent_id=$request->parent_id;
         $category->slug=Str::slug($request->name);
         $category->save();
 
