@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 
 
 
@@ -31,6 +32,8 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'dashboard'], function (){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
     //Categories
     Route::resource('category',CategoryController::class);
+    //Tags
+    Route::resource('tags',TagController::class);
 });
 
 
