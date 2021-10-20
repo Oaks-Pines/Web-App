@@ -65,7 +65,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return view('dashboard.tags.edit',compact('tag'));
     }
 
     /**
