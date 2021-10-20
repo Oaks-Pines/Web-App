@@ -56,6 +56,18 @@
                   />
                 </svg>
               </a>
+              <!-- Posts link -->
+              <!-- Active classes "bg-primary text-white" -->
+              <!-- inActive classes "bg-primary-50 text-primary-lighter" -->
+              <a
+                href="/dashboard/posts"
+                class="p-2 transition-colors duration-200 rounded-full text-primary-lighter bg-primary-50 hover:text-primary hover:bg-primary-100 dark:hover:text-light dark:hover:bg-primary-dark dark:bg-dark focus:outline-none focus:bg-primary-100 dark:focus:bg-primary-dark focus:ring-primary-darker"
+              >
+                <span class="sr-only">Posts</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </a>
               <!-- Category link -->
               <!-- Active classes "bg-primary text-white" -->
               <!-- inActive classes "bg-primary-50 text-primary-lighter" -->

@@ -24,7 +24,7 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-Route::get('/search',[PostsController::class,'search'])->name('posts.search');
+// Route::get('/search',[PostsController::class,'search'])->name('posts.search');
 
 Route::group(['middleware'=>['auth'], 'prefix'=>'dashboard'], function (){
     //Dashboard
