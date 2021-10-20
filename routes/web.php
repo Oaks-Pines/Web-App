@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 
@@ -23,7 +23,6 @@ use App\Http\Controllers\DashboardController;
 //Home Page
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::resource('posts',PostsController::class);
 
 Route::get('/search',[PostsController::class,'search'])->name('posts.search');
 
@@ -34,6 +33,8 @@ Route::group(['middleware'=>['auth'], 'prefix'=>'dashboard'], function (){
     Route::resource('category',CategoryController::class);
     //Tags
     Route::resource('tags',TagController::class);
+    //Posts
+    Route::resource('posts',PostController::class);
 });
 
 
