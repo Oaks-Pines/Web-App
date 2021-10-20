@@ -75,9 +75,13 @@ class TagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(TagRequest $request, Tag $tag)
     {
-        //
+        $tag->name=$request->name;
+        $tag->slug=Str::slug($request->name);
+        $tag->save();
+
+        return redirect()->route('tags.index')->with('success','Tag updated successfully!');
     }
 
     /**
